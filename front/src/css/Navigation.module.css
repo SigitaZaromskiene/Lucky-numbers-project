@@ -1,0 +1,25 @@
+.navigation-bar {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  background-color: rgb(229, 223, 223);
+  list-style: none;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  cursor: pointer;
+}
+
+.active {
+  color: green;
+}
+
+li {
+  font-size: 22px;
+}

@@ -1,0 +1,53 @@
+.login-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 85px;
+}
+
+.register-form {
+  border: 1px solid green;
+  width: 450px;
+  height: 350px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form {
+  border: 1px solid green;
+  width: 400px;
+  height: 300px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+h5 {
+  padding: 15px;
+}
+
+.border {
+  border-bottom: 1px solid green;
+  width: 100%;
+}
+
+.login-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  gap: 20px;
+}
+
+label {
+  font-size: 18px;
+}
+
+input {
+  height: 30px;
+  width: 250px;
+  margin-bottom: 0px;
+}
