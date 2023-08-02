@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { useState, useEffect } from "react";
+import { useRead } from "./useRead";
 
 export const Global = createContext();
 
@@ -7,11 +8,13 @@ export const GlobalProvider = ({ children }) => {
   const [route, setRoute] = useState("home");
   const [luckyNumber, setLuckyNumber] = useState(1);
   const [numbersList, setNumbersList] = useState(null);
-  const [usersList, setUsersList] = useState(null);
+  // const [usersList, setUsersList] = useState(null);
+
+  const [usersList, setResponse] = useRead();
 
   useEffect(() => {
-    setUsersList(Date.now());
-  }, [setUsersList]);
+    setResponse(Date.now());
+  }, [setResponse]);
 
   return (
     <Global.Provider
@@ -22,8 +25,8 @@ export const GlobalProvider = ({ children }) => {
         setLuckyNumber,
         numbersList,
         setNumbersList,
-        setUsersList,
         usersList,
+        setResponse,
       }}
     >
       {children}
