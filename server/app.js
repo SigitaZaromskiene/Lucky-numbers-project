@@ -106,3 +106,16 @@ app.delete("/users/:id", (req, res) => {
     res.json({});
   });
 });
+
+app.post("/register", (req, res) => {
+  const sql = `
+  INSERT INTO users (name, psw)
+  VALUES (?, ?)
+
+  `;
+
+  con.query(sql, [req.body.name, req.body.psw], (err) => {
+    if (err) throw err;
+    res.json({});
+  });
+});
