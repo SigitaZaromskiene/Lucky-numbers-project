@@ -1,15 +1,28 @@
 import styles from "../css/Login.module.css";
 import Button from "./Button";
-import { useState } from "react";
+import { Global } from "./Global";
+import { useState, useContext } from "react";
+import Message from "./Message";
 
 function Login() {
   const [name, setName] = useState("");
   const [psw, setPsw] = useState("");
 
+  const { setMessage, message } = useContext(Global);
+
+  const loginHandler = (e) => {
+    e.preventDefault();
+
+    if (!name || !psw) {
+      setMessage("Please fill all details");
+    }
+  };
+
   return (
     <div className={styles["login-form-container"]}>
       <form className={styles.form}>
-        <h5>Please login</h5>
+        {message ? <Message message={message} /> : <h5>Please login</h5>}
+
         <div className={styles.border}></div>
         <div
           style={{
@@ -32,7 +45,7 @@ function Login() {
             <input onChange={(e) => setPsw(e.target.value)} value={psw}></input>
           </div>
         </div>
-        <Button text="Login"></Button>
+        <Button action={loginHandler} text="Login"></Button>
       </form>
     </div>
   );

@@ -23,7 +23,7 @@ export const GlobalProvider = ({ children }) => {
 
   useEffect(() => {
     setResponse(Date.now());
-  }, [usersList]);
+  }, [deleteNumberUpdate]);
 
   useEffect(() => {
     setResponseNumber(Date.now());

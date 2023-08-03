@@ -16,14 +16,17 @@ function Register() {
     e.preventDefault();
     if (name < 3) {
       setMessage("Name is too short");
+      return;
     }
 
     if (psw !== psw2) {
       setMessage("Passwords do not match");
+      return;
     }
 
     if (!psw || !name || !psw2) {
       setMessage("Please fill all details");
+      return;
     }
     axios
       .post(
@@ -32,14 +35,12 @@ function Register() {
         { withCredentials: true }
       )
       .then((res) => {
-        if (res.data.status === "ok") {
-          setRoute("login");
-          setName("");
-          setPsw("");
-          setPsw2("");
-        } else {
-          setRoute("register");
-        }
+        console.log(res.data);
+
+        setRoute("login");
+        setName("");
+        setPsw("");
+        setPsw2("");
       });
   };
 

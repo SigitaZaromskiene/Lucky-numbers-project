@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const md5 = require("md5");
 
 const mysql = require("mysql");
 
@@ -29,10 +30,6 @@ app.use(
   })
 );
 app.use(express.json());
-
-app.listen(port, () => {
-  console.log(`LN is on port number: ${port}`);
-});
 
 app.get("/users", (req, res) => {
   const sql = `
@@ -118,4 +115,20 @@ app.post("/register", (req, res) => {
     if (err) throw err;
     res.json({});
   });
+});
+
+app.get("/login", (req, res) => {
+  const sql = `
+  SELECT name, pasw
+  FROM users
+ 
+  `;
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    res.json(result);
+  });
+});
+
+app.listen(port, () => {
+  console.log(`LN is on port number: ${port}`);
 });
