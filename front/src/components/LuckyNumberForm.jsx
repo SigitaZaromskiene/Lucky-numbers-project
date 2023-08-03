@@ -7,21 +7,13 @@ function LuckyNumberForm() {
   const [luckyNumber, setLuckyNumber] = useState(1);
   const { setCreateNumber } = useContext(Global);
 
-  const setLuckyNumberHandler = () => {
+  const setLuckyNumberHandler = (e) => {
+    e.preventDefault();
     setCreateNumber({
       number: parseInt(luckyNumber),
     });
     setLuckyNumber(1);
   };
-
-  // useEffect(() => {
-  //   if (numberList === null) {
-  //     return;
-  //   }
-  //   axios
-  //     .post(URL, numberList, { withCredentials: true })
-  //     .then((res) => setResponseNumber(res.data));
-  // }, [numberList]);
 
   return (
     <form className={styles.luckyNumbersForm}>

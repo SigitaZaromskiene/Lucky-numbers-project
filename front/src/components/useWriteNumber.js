@@ -8,21 +8,6 @@ export const useWriteNumber = (_) => {
   const [destroyNumber, setDeleteNumber] = useState(null);
   const [editNumber, setEditNumber] = useState(null);
 
-  // useEffect(() => {
-  //   if (null === edit) {
-  //     return;
-  //   }
-  //   axios
-  //     .put(
-  //       URL + "/" + edit.action + "/" + edit.id,
-  //       { number: edit.number },
-  //       { withCredentials: true }
-  //     )
-  //     .then((res) => {
-  //       setResponse(res.data);
-  //     });
-  // }, [edit]);
-
   useEffect(() => {
     if (null === createNumber) {
       return;
@@ -32,14 +17,29 @@ export const useWriteNumber = (_) => {
       .then((res) => setResponse(res.data));
   }, [createNumber]);
 
-  // useEffect(() => {
-  //   if (null === destroy) {
-  //     return;
-  //   }
-  //   axios
-  //     .delete(URL + "/" + destroy.id, { withCredentials: true })
-  //     .then((res) => setResponse(res.data));
-  // }, [destroy]);
+  useEffect(() => {
+    if (null === destroyNumber) {
+      return;
+    }
+    axios
+      .delete(URL + "/" + destroyNumber.id, { withCredentials: true })
+      .then((res) => setResponse(res.data));
+  }, [destroyNumber]);
 
-  return [response, setCreateNumber];
+  useEffect(() => {
+    if (null === editNumber) {
+      return;
+    }
+    axios
+      .put(
+        URL + "/" + editNumber.id,
+        { number: editNumber.number },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        setResponse(res.data);
+      });
+  }, [editNumber]);
+
+  return [response, setCreateNumber, setDeleteNumber, setEditNumber];
 };

@@ -70,3 +70,39 @@ app.post("/numbers", (req, res) => {
     res.json({});
   });
 });
+
+app.delete("/numbers/:id", (req, res) => {
+  const sql = `
+        DELETE FROM numbers
+        WHERE id = ?
+    `;
+  con.query(sql, [req.params.id], (err) => {
+    if (err) throw err;
+    res.json({});
+  });
+});
+
+app.put("/numbers/:id", (req, res) => {
+  const sql = `
+        UPDATE numbers
+        SET number = ? 
+        WHERE id = ?
+    `;
+  params = [req.body.number, req.params.id];
+
+  con.query(sql, params, (err) => {
+    if (err) throw err;
+    res.json({});
+  });
+});
+
+app.delete("/users/:id", (req, res) => {
+  const sql = `
+        DELETE FROM users
+        WHERE id = ?
+    `;
+  con.query(sql, [req.params.id], (err) => {
+    if (err) throw err;
+    res.json({});
+  });
+});

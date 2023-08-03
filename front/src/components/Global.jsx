@@ -10,24 +10,27 @@ export const Global = createContext();
 export const GlobalProvider = ({ children }) => {
   const [route, setRoute] = useState("home");
 
-  // const [numbersList, setNumbersList] = useState(null);
-
+  // users
   const [usersList, setResponse] = useRead();
-
   const [deleteNumberUpdate, setDeleteUsers] = useUsersDelete();
 
-  const [numberList, setResponseNumber] = useReadNumbers();
-  const [response, setCreateNumber] = useWriteNumber();
+  // numbers
 
-  console.log(numberList);
+  const [numberList, setResponseNumber] = useReadNumbers();
+  const [response, setCreateNumber, setDeleteNumber, setEditNumber] =
+    useWriteNumber();
 
   useEffect(() => {
     setResponse(Date.now());
-  }, [setResponse]);
+  }, [usersList]);
 
   useEffect(() => {
     setResponseNumber(Date.now());
-  }, [setResponseNumber]);
+  }, [response]);
+
+  useEffect(() => {
+    setDeleteUsers(Date.now());
+  }, [deleteNumberUpdate]);
 
   return (
     <Global.Provider
@@ -36,11 +39,13 @@ export const GlobalProvider = ({ children }) => {
         setRoute,
         response,
         setCreateNumber,
-        setDeleteUsers,
+        setDeleteNumber,
         usersList,
         setResponse,
         numberList,
         setResponseNumber,
+        setEditNumber,
+        setDeleteUsers,
       }}
     >
       {children}

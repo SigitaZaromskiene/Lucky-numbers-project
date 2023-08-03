@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import styles from "../css/List.module.css";
-import Button from "./Button";
 import { Global } from "./Global";
+import ButtonDeleteUser from "./ButtonDeleteUser";
 
 function Users() {
-  const { usersList, setDeleteUsers } = useContext(Global);
+  const { usersList } = useContext(Global);
 
   return (
     <div className={styles["users-container"]}>
@@ -13,7 +13,7 @@ function Users() {
           <div key={li.id} className={styles.list}>
             <li>{li.name}</li>
             <div className={styles["list-buttons"]}>
-              <Button text="Delete"></Button>
+              <ButtonDeleteUser li={li} />
             </div>
           </div>
         ))}

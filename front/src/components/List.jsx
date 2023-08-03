@@ -1,9 +1,9 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import styles from "../css/List.module.css";
-import Button from "./Button";
 import { Global } from "./Global";
-import { v4 as uuidv4 } from "uuid";
-import axios from "axios";
+import ButtonDelete from "./ButtonDelete";
+import ButtonAdd from "./ButtonAdd";
+import ButtonRemove from "./ButtonRemove";
 
 function List() {
   const { numberList } = useContext(Global);
@@ -14,9 +14,9 @@ function List() {
         <div className={styles.list} key={li.id}>
           <li>{li.number}</li>
           <div className={styles["list-buttons"]}>
-            <Button text="Add"></Button>
-            <Button text="Remove"></Button>
-            <Button text="Delete"></Button>
+            <ButtonAdd li={li}></ButtonAdd>
+            <ButtonRemove li={li}></ButtonRemove>
+            <ButtonDelete li={li}></ButtonDelete>
           </div>
         </div>
       ))}
