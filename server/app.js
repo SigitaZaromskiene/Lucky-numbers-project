@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const md5 = require("md5");
+const { v4: uuidv4 } = require("uuid");
 
 const mysql = require("mysql");
 
@@ -105,29 +106,40 @@ app.delete("/users/:id", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
+  const session = uuidv4();
   const sql = `
-  INSERT INTO users (name, psw)
-  VALUES (?, ?)
+  INSERT INTO users (session, name, psw)
+  VALUES (?, ?, ?)
 
   `;
 
-  con.query(sql, [req.body.name, req.body.psw], (err) => {
+  con.query(sql, [session, req.body.name, md5(req.body.psw)], (err, result) => {
     if (err) throw err;
-    res.json({});
+    if (result.affectedRows) {
+      res.cookie("usersSession", session);
+      res.json({
+        status: "ok",
+        name: req.body.name,
+      });
+    } else {
+      res.json({
+        status: "error",
+      });
+    }
   });
 });
 
-app.get("/login", (req, res) => {
-  const sql = `
-  SELECT name, pasw
-  FROM users
- 
-  `;
-  con.query(sql, (err, result) => {
-    if (err) throw err;
-    res.json(result);
-  });
-});
+// app.get("/login", (req, res) => {
+//   const sql = `
+//   SELECT name, pasw
+//   FROM users
+
+//   `;
+//   con.query(sql, (err, result) => {
+//     if (err) throw err;
+//     res.json(result);
+//   });
+// });
 
 app.listen(port, () => {
   console.log(`LN is on port number: ${port}`);

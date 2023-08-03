@@ -3,6 +3,7 @@ import Button from "./Button";
 import { Global } from "./Global";
 import { useState, useContext } from "react";
 import Message from "./Message";
+import axios from "axios";
 
 function Login() {
   const [name, setName] = useState("");
@@ -15,7 +16,18 @@ function Login() {
 
     if (!name || !psw) {
       setMessage("Please fill all details");
+      return;
     }
+
+    axios
+      .post(
+        "http://localhost:3003/login",
+        { name, psw },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log(res.data);
+      });
   };
 
   return (

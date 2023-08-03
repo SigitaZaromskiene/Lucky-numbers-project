@@ -7,7 +7,8 @@
     "md5": "^2.3.0",
     "mysql": "^2.18.1",
     "nodeman": "^1.1.2",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "uuid": "^9.0.0"
   },
   "scripts": {
     "start": "nodemon app.js"
