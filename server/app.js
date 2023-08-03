@@ -37,10 +37,36 @@ app.listen(port, () => {
 app.get("/users", (req, res) => {
   const sql = `
   SELECT id, name
-  FROM users`;
-
+  FROM users
+ 
+  `;
   con.query(sql, (err, result) => {
     if (err) throw err;
     res.json(result);
+  });
+});
+
+app.get("/numbers", (req, res) => {
+  const sql = `
+  SELECT id, number
+  FROM numbers
+ 
+  `;
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    res.json(result);
+  });
+});
+
+app.post("/numbers", (req, res) => {
+  const sql = `
+  INSERT INTO numbers (number)
+  VALUES (?)
+
+  `;
+
+  con.query(sql, [req.body.number], (err) => {
+    if (err) throw err;
+    res.json({});
   });
 });

@@ -1,20 +1,27 @@
 import Button from "./Button";
 import styles from "../css/Numbers.module.css";
 import { Global } from "./Global";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 function LuckyNumberForm() {
-  const { luckyNumber, setLuckyNumber, setRoute, numbersList, setNumbersList } =
-    useContext(Global);
+  const [luckyNumber, setLuckyNumber] = useState(1);
+  const { setCreateNumber } = useContext(Global);
 
   const setLuckyNumberHandler = () => {
-    setNumbersList({
-      luckyNumber: parseInt(luckyNumber),
+    setCreateNumber({
+      number: parseInt(luckyNumber),
     });
     setLuckyNumber(1);
   };
 
-  console.log(numbersList);
+  // useEffect(() => {
+  //   if (numberList === null) {
+  //     return;
+  //   }
+  //   axios
+  //     .post(URL, numberList, { withCredentials: true })
+  //     .then((res) => setResponseNumber(res.data));
+  // }, [numberList]);
 
   return (
     <form className={styles.luckyNumbersForm}>
@@ -30,7 +37,7 @@ function LuckyNumberForm() {
           value={luckyNumber}
           onChange={(e) => setLuckyNumber(e.target.value)}
         ></input>
-        <Button text="Add" action={setLuckyNumberHandler}></Button>
+        <Button action={setLuckyNumberHandler} text="Add"></Button>
       </div>
     </form>
   );
