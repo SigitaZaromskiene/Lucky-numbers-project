@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { Global } from "./Global";
 
 function Logout() {
-  const { setLogged, setRoute } = useContext(Global);
+  const { setLogged, setRoute, setLoggedUserName } = useContext(Global);
 
   const logoutHandler = () => {
     axios
@@ -12,6 +12,7 @@ function Logout() {
         console.log(res);
         setLogged(false);
         setRoute("home");
+        setLoggedUserName(null);
       });
   };
   return <li onClick={logoutHandler}>Logout</li>;

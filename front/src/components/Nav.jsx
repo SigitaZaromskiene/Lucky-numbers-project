@@ -4,9 +4,8 @@ import { Global } from "./Global";
 import Logout from "./Logout";
 
 function Nav() {
-  const { setRoute, route, logged, loggedUserName } = useContext(Global);
+  const { setRoute, route, loggedUserName } = useContext(Global);
 
-  console.log(logged);
   return (
     <div className={styles["navigation-bar"]}>
       <div>
@@ -33,7 +32,7 @@ function Nav() {
         </li>
       </div>
       <div className={styles.nav}>
-        {logged ? (
+        {loggedUserName ? (
           <>
             <p style={{ fontSize: "24px", color: "red" }}>
               Hello {loggedUserName}

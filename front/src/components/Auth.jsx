@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import Login from "./Login";
 
 function Auth({ children, roles }) {
+  console.log(roles);
   const {
     logged,
     setLogged,
