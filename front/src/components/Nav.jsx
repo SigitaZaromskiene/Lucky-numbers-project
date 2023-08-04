@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import styles from "../css/Navigation.module.css";
 import { Global } from "./Global";
+import Logout from "./Logout";
 
 function Nav() {
   const { setRoute, route, logged, loggedUserName } = useContext(Global);
@@ -31,7 +32,12 @@ function Nav() {
       </div>
       <div className={styles.nav}>
         {logged ? (
-          <p>Hello {loggedUserName}</p>
+          <>
+            <p style={{ fontSize: "24px", color: "red" }}>
+              Hello {loggedUserName}
+            </p>
+            <Logout></Logout>
+          </>
         ) : (
           <>
             <li

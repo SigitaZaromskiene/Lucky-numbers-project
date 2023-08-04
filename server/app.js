@@ -130,27 +130,32 @@ app.post("/register", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  const session = uuidv4();
+  const sessionId = uuidv4();
+
   const sql = `
-  INSERT INTO users (session, name, psw)
-  VALUES (?, ?, ?)
+        UPDATE users
+        SET session = ?
+        WHERE name = ? AND psw = ?
+    `;
 
-  `;
-
-  con.query(sql, [session, req.body.name, md5(req.body.psw)], (err, result) => {
-    if (err) throw err;
-    if (result.affectedRows) {
-      res.cookie("usersSession", session);
-      res.json({
-        status: "ok",
-        name: req.body.name,
-      });
-    } else {
-      res.json({
-        status: "error",
-      });
+  con.query(
+    sql,
+    [sessionId, req.body.name, md5(req.body.psw)],
+    (err, result) => {
+      if (err) throw err;
+      if (result.affectedRows) {
+        res.cookie("usersSession", sessionId);
+        res.json({
+          status: "ok",
+          name: req.body.name,
+        });
+      } else {
+        res.json({
+          status: "error",
+        });
+      }
     }
-  });
+  );
 });
 
 app.get("/login", (req, res) => {
@@ -172,6 +177,13 @@ app.get("/login", (req, res) => {
         status: "error",
       });
     }
+  });
+});
+
+app.post("/logout", (req, res) => {
+  res.cookie("usersSession", "");
+  res.json({
+    status: "logout",
   });
 });
 
