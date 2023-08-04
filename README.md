@@ -10,6 +10,8 @@ This project is for educational porpuses only.
 -   Using controlled forms
 -   Practising css modules
 -   Practising post, get, delete and put methods
+-   Authorization
+-   Login, register and logout features
 
 
 # Getting Started with Create React App
