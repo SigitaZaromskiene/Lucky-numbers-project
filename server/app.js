@@ -34,7 +34,7 @@ app.use(express.json());
 
 app.get("/users", (req, res) => {
   const sql = `
-  SELECT id, name
+  SELECT id, name, role
   FROM users
  
   `;
@@ -106,27 +106,32 @@ app.delete("/users/:id", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
+  const role = "manager";
   const session = uuidv4();
   const sql = `
-  INSERT INTO users (session, name, psw)
-  VALUES (?, ?, ?)
+  INSERT INTO users (session, name, psw, role)
+  VALUES (?, ?, ?, ?)
 
   `;
 
-  con.query(sql, [session, req.body.name, md5(req.body.psw)], (err, result) => {
-    if (err) throw err;
-    if (result.affectedRows) {
-      res.cookie("usersSession", session);
-      res.json({
-        status: "ok",
-        name: req.body.name,
-      });
-    } else {
-      res.json({
-        status: "error",
-      });
+  con.query(
+    sql,
+    [session, req.body.name, md5(req.body.psw), role],
+    (err, result) => {
+      if (err) throw err;
+      if (result.affectedRows) {
+        res.cookie("usersSession", session);
+        res.json({
+          status: "ok",
+          name: req.body.name,
+        });
+      } else {
+        res.json({
+          status: "error",
+        });
+      }
     }
-  });
+  );
 });
 
 app.post("/login", (req, res) => {
@@ -160,7 +165,7 @@ app.post("/login", (req, res) => {
 
 app.get("/login", (req, res) => {
   const sql = `
-        SELECT name
+        SELECT name, role
         FROM users
         WHERE session = ?
     `;
@@ -171,6 +176,7 @@ app.get("/login", (req, res) => {
       res.json({
         status: "ok",
         name: result[0].name,
+        role: result[0].role,
       });
     } else {
       res.json({

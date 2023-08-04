@@ -5,6 +5,8 @@ import Logout from "./Logout";
 
 function Nav() {
   const { setRoute, route, logged, loggedUserName } = useContext(Global);
+
+  console.log(logged);
   return (
     <div className={styles["navigation-bar"]}>
       <div>

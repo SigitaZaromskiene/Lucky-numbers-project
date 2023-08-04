@@ -25,6 +25,7 @@ export const GlobalProvider = ({ children }) => {
 
   const [logged, setLogged] = useState(null);
   const [loggedUserName, setLoggedUserName] = useState("");
+  const [authRole, setAuthRole] = useState(null);
 
   useEffect(() => {
     setResponse(Date.now());
@@ -34,9 +35,9 @@ export const GlobalProvider = ({ children }) => {
     setResponseNumber(Date.now());
   }, [response]);
 
-  // useEffect(() => {
-  //   setDeleteUsers(Date.now());
-  // }, [deleteNumberUpdate]);
+  useEffect(() => {
+    setLogged(null);
+  }, [route]);
 
   return (
     <Global.Provider
@@ -58,6 +59,8 @@ export const GlobalProvider = ({ children }) => {
         setLogged,
         loggedUserName,
         setLoggedUserName,
+        authRole,
+        setAuthRole,
       }}
     >
       {children}
