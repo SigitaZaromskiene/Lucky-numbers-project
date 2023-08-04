@@ -3,7 +3,7 @@ import styles from "../css/Navigation.module.css";
 import { Global } from "./Global";
 
 function Nav() {
-  const { setRoute, route } = useContext(Global);
+  const { setRoute, route, logged, loggedUserName } = useContext(Global);
   return (
     <div className={styles["navigation-bar"]}>
       <div>
@@ -30,18 +30,24 @@ function Nav() {
         </li>
       </div>
       <div className={styles.nav}>
-        <li
-          className={route === "login" ? styles.active : ""}
-          onClick={() => setRoute("login")}
-        >
-          Login
-        </li>
-        <li
-          className={route === "register" ? styles.active : ""}
-          onClick={() => setRoute("register")}
-        >
-          Register
-        </li>
+        {logged ? (
+          <p>Hello {loggedUserName}</p>
+        ) : (
+          <>
+            <li
+              className={route === "login" ? styles.active : ""}
+              onClick={() => setRoute("login")}
+            >
+              Login
+            </li>
+            <li
+              className={route === "register" ? styles.active : ""}
+              onClick={() => setRoute("register")}
+            >
+              Register
+            </li>{" "}
+          </>
+        )}
       </div>
     </div>
   );

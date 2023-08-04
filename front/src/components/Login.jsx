@@ -9,7 +9,14 @@ function Login() {
   const [name, setName] = useState("");
   const [psw, setPsw] = useState("");
 
-  const { setMessage, message } = useContext(Global);
+  const {
+    setMessage,
+    message,
+    logged,
+    setLogged,
+    setRoute,
+    setLoggedUserName,
+  } = useContext(Global);
 
   const loginHandler = (e) => {
     e.preventDefault();
@@ -26,7 +33,16 @@ function Login() {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
+        if (res.data.status === "ok") {
+          setName("");
+          setPsw("");
+          setLoggedUserName(res.data.name);
+          setLogged(true);
+          setRoute("numbers");
+        } else {
+          setMessage("Wrong info");
+        }
       });
   };
 

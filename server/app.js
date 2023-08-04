@@ -129,17 +129,51 @@ app.post("/register", (req, res) => {
   });
 });
 
-// app.get("/login", (req, res) => {
-//   const sql = `
-//   SELECT name, pasw
-//   FROM users
+app.post("/login", (req, res) => {
+  const session = uuidv4();
+  const sql = `
+  INSERT INTO users (session, name, psw)
+  VALUES (?, ?, ?)
 
-//   `;
-//   con.query(sql, (err, result) => {
-//     if (err) throw err;
-//     res.json(result);
-//   });
-// });
+  `;
+
+  con.query(sql, [session, req.body.name, md5(req.body.psw)], (err, result) => {
+    if (err) throw err;
+    if (result.affectedRows) {
+      res.cookie("usersSession", session);
+      res.json({
+        status: "ok",
+        name: req.body.name,
+      });
+    } else {
+      res.json({
+        status: "error",
+      });
+    }
+  });
+});
+
+app.get("/login", (req, res) => {
+  const sql = `
+        SELECT name
+        FROM users
+        WHERE session = ?
+    `;
+  con.query(sql, [req.cookies.usersSession || ""], (err, result) => {
+    if (err) throw err;
+
+    if (result.length) {
+      res.json({
+        status: "ok",
+        name: result[0].name,
+      });
+    } else {
+      res.json({
+        status: "error",
+      });
+    }
+  });
+});
 
 app.listen(port, () => {
   console.log(`LN is on port number: ${port}`);

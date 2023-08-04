@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useContecxt, useState } from "react";
+import { useEffect, useState } from "react";
 
 const URL = "http://localhost:3003/register";
 

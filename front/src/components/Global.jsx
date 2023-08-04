@@ -21,6 +21,11 @@ export const GlobalProvider = ({ children }) => {
   const [response, setCreateNumber, setDeleteNumber, setEditNumber] =
     useWriteNumber();
 
+  // login
+
+  const [logged, setLogged] = useState(null);
+  const [loggedUserName, setLoggedUserName] = useState("");
+
   useEffect(() => {
     setResponse(Date.now());
   }, [deleteNumberUpdate]);
@@ -49,6 +54,10 @@ export const GlobalProvider = ({ children }) => {
         setDeleteUsers,
         setMessage,
         message,
+        logged,
+        setLogged,
+        loggedUserName,
+        setLoggedUserName,
       }}
     >
       {children}
