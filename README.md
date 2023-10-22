@@ -5,12 +5,17 @@ This project is for educational porpuses only.
 
 ## 🎯 Project features/goals
 
-##🛠️ React State Management: Utilizing useContext, useState, and useEffect, this project offers a dynamic and responsive user experience.
-##📋 Controlled Forms: Intuitive user interactions with controlled forms that provide real-time feedback and consistency.
-##🎨 CSS Modules: Structured and encapsulated styling with CSS modules, creating a clean and maintainable design.
-##📊 HTTP Methods: Proficiency in POST, GET, DELETE, and PUT methods for seamless data management and communication.
-##🔐 Authorization: Emphasizing user authorization for data security and controlled access.
-##👤 User Account Features: Enjoy a comprehensive user experience with login, register, and logout functionalities, designed for both security and personalization.
+🛠️ React State Management: Utilizing useContext, useState, and useEffect, this project offers a dynamic and responsive user experience.
+
+📋 Controlled Forms: Intuitive user interactions with controlled forms that provide real-time feedback and consistency.
+
+🎨 CSS Modules: Structured and encapsulated styling with CSS modules, creating a clean and maintainable design.
+
+📊 HTTP Methods: Proficiency in POST, GET, DELETE, and PUT methods for seamless data management and communication.
+
+🔐 Authorization: Emphasizing user authorization for data security and controlled access.
+
+👤 User Account Features: Enjoy a comprehensive user experience with login, register, and logout functionalities, designed for both security and personalization.
 
 
 # Getting Started with Create React App
