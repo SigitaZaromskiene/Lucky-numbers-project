@@ -5,9 +5,9 @@ This project is for educational porpuses only.
 
 ## 🎯 Project features/goals
 
-React's State Management: Leveraging the capabilities of useContext, useState, and useEffect, my application delivers a dynamic and responsive user experience.
+##React's State Management##: Leveraging the capabilities of useContext, useState, and useEffect, my application delivers a dynamic and responsive user experience.
 
-Controlled Forms: With controlled forms, user interactions are intuitive and reliable, resulting in real-time feedback and consistency.
+##Controlled Forms: With controlled forms, user interactions are intuitive and reliable, resulting in real-time feedback and consistency.
 
 CSS Modules: I've employed CSS modules to achieve a structured and encapsulated approach to styling, ensuring a clean and maintainable design.
 
