@@ -5,13 +5,17 @@ This project is for educational porpuses only.
 
 ## 🎯 Project features/goals
 
--   Using MariaDB 
--   Using useContext, useState, useEffect
--   Using controlled forms
--   Practising css modules
--   Practising post, get, delete and put methods
--   Authorization
--   Login, register and logout features
+React's State Management: Leveraging the capabilities of useContext, useState, and useEffect, my application delivers a dynamic and responsive user experience.
+
+Controlled Forms: With controlled forms, user interactions are intuitive and reliable, resulting in real-time feedback and consistency.
+
+CSS Modules: I've employed CSS modules to achieve a structured and encapsulated approach to styling, ensuring a clean and maintainable design.
+
+HTTP Methods Proficiency: My project excels in handling essential HTTP methods, including POST, GET, DELETE, and PUT, offering seamless data management and communication.
+
+Authorization: The project emphasizes user authorization, ensuring data security and controlled access.
+
+User Account Features: Enjoy a complete user experience with login, register, and logout functionalities.
 
 
 # Getting Started with Create React App
